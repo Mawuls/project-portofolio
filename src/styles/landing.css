@@ -1,0 +1,173 @@
+/* src/styles/landing.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: #f8fafc; /* Latar belakang terang yang bersih */
+  color: #334155;
+  line-height: 1.6;
+}
+
+/* Kontainer utama:
+   - max-width: membatasi lebar agar tidak melebar penuh di layar besar
+   - margin: 0 auto: menjaga posisi tetap di tengah
+   - padding menyeluruh kanan-kiri: konten rata kiri-kanan dan simetris */
+.portfolio-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Seksi Umum */
+section {
+  margin-bottom: 64px;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 24px;
+  border-left: 4px solid #2563eb;
+  padding-left: 12px;
+}
+
+/* Hero Section */
+.hero-section {
+  text-align: left;
+  padding: 40px 0;
+}
+
+.greeting {
+  font-size: 18px;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.name {
+  font-size: 48px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.role {
+  font-size: 24px;
+  font-weight: 500;
+  color: #2563eb;
+  margin-bottom: 24px;
+}
+
+.description {
+  font-size: 18px;
+  color: #475569;
+  max-width: 700px;
+}
+
+/* Pengalaman & Proyek (Card Layout) */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.card h4 {
+  font-size: 18px;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.card .subtitle {
+  font-size: 14px;
+  color: #2563eb;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.card p {
+  color: #64748b;
+  font-size: 15px;
+}
+
+/* Keahlian (Tags Layout) */
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.skill-tag {
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid #bfdbfe;
+}
+
+/* Laptop / layar besar: padding samping sedikit lebih luas */
+@media (min-width: 1024px) {
+  .portfolio-container {
+    padding: 0 40px;
+  }
+}
+
+/* Responsif mobile (<768px) */
+@media (max-width: 767px) {
+  .portfolio-container {
+    padding: 0 16px;
+  }
+
+  section {
+    margin-bottom: 48px;
+  }
+
+  .hero-section {
+    padding: 24px 0;
+  }
+
+  .name {
+    font-size: 36px;
+  }
+
+  .role {
+    font-size: 20px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .card-grid {
+    gap: 16px;
+  }
+}
