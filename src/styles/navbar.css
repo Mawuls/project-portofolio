@@ -1,111 +1,40 @@
-/* src/styles/navbar.css */
-
-.navbar {
+.navbar-light {
+  position: fixed;
+  top: 0; left: 0; right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24px 0;
-  border-bottom: 1px solid #e2e8f0;
-  margin-bottom: 40px;
+  padding: 28px 5%;
+  z-index: 1000;
+  background: transparent; /* Latar belakang tembus pandang penuh */
+  backdrop-filter: none;
+  border-bottom: none;
 }
 
-.logo {
-  font-size: 24px;
-  font-weight: 700;
-  color: #2563eb;
+.logo-light { 
+  font-size: 24px; 
+  font-weight: 900; 
+  color: #1a1512; 
+  letter-spacing: -1px;
+}
+.logo-light span { color: #5c3a21; }
+
+.nav-links-light { 
+  display: flex; 
+  gap: 36px; 
+  list-style: none; 
 }
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 24px;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: #64748b;
-  font-weight: 500;
+.nav-links-light a {
+  text-decoration: none; 
+  color: #1a1512; 
+  font-weight: 700; 
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   transition: color 0.2s;
 }
 
-.nav-links a:hover {
-  color: #2563eb;
-}
-
-/* Tombol hamburger (disembunyikan di desktop) */
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 6px;
-}
-
-.menu-toggle span {
-  display: block;
-  width: 24px;
-  height: 3px;
-  border-radius: 2px;
-  background-color: #334155;
-  transition: transform 0.25s, opacity 0.25s;
-}
-
-/* Responsif mobile (<768px) */
-@media (max-width: 767px) {
-  .navbar {
-    position: relative;
-  }
-
-  .menu-toggle {
-    display: flex;
-  }
-
-  .nav-links {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    flex-direction: column;
-    gap: 0;
-    background-color: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-    padding: 8px 0;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-8px);
-    transition: opacity 0.2s, transform 0.2s;
-  }
-
-  .nav-links.open {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-  }
-
-  .nav-links li a {
-    display: block;
-    padding: 12px 20px;
-  }
-
-  .nav-links li a:hover {
-    background-color: #eff6ff;
-  }
-
-  /* Animasi hamburger menjadi ikon X saat dibuka */
-  .menu-toggle.active span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-
-  .menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .menu-toggle.active span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  }
+.nav-links-light a:hover { 
+  color: #5c3a21; 
 }
