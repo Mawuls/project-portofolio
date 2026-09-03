@@ -1,10 +1,18 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import '../styles/landing.css';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
+// Import media[cite: 9]
+import xosPortalImg from '../media/xos-portal.png';
+import Cod from '../media/code-playground.png';
+import absence from '../media/absence.png';
+import library from '../media/library-converter.png';
+import importer from '../media/importer-data.png';
+
 export default function LandingPage() {
   const videoRef = useRef(null);
+  const [activeProject, setActiveProject] = useState(0);
 
   const handleScroll = (e) => {
     const container = e.target;
@@ -23,7 +31,7 @@ export default function LandingPage() {
     }
   }, []);
 
-  // Data keahlian beserta link ikon dari Devicon
+  // Data keahlian[cite: 9]
   const skillsData = [
     { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg' },
     { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg' },
@@ -36,6 +44,48 @@ export default function LandingPage() {
     { name: 'SQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg' },
     { name: 'Camunda BPMN', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg' }
   ];
+
+  // Data Proyek menggunakan variabel import gambar[cite: 9]
+  const projectsData = [
+    {
+      title: "Multi Frontend XOS Portal",
+      badge: "Platform",
+      desc: "Antarmuka terpusat lintas platform untuk mengelola ekosistem dan operasional XOS dengan integrasi data real-time.",
+      img: xosPortalImg 
+    },
+    {
+      title: "Project Importer Data",
+      badge: "Data Pipeline",
+      desc: "Modul utilitas untuk memvalidasi, memproses, dan mengimpor set data berskala besar ke dalam sistem basis data utama.",
+      img: importer
+    },
+    {
+      title: "Project Absence Company",
+      badge: "Sistem Internal",
+      desc: "Platform manajemen kehadiran karyawan dengan fitur pelacakan waktu dan pelaporan data terpusat untuk HRD.",
+      img: absence
+    },
+    {
+      title: "Project Code Playground",
+      badge: "Alat Interaktif",
+      desc: "Lingkungan eksekusi kode berbasis web untuk pengujian dan eksperimen logika pemrograman secara langsung di browser.",
+      img: Cod
+    },
+    {
+      title: "Library JSON to UI Form",
+      badge: "Pustaka Komponen",
+      desc: "Pustaka dinamis yang secara otomatis mengonversi skema data JSON yang kompleks menjadi komponen formulir antarmuka utuh.",
+      img: library
+    }
+  ];
+
+  const nextProject = () => {
+    setActiveProject((prev) => (prev + 1) % projectsData.length);
+  };
+
+  const prevProject = () => {
+    setActiveProject((prev) => (prev === 0 ? projectsData.length - 1 : prev - 1));
+  };
 
   return (
     <>
@@ -55,7 +105,7 @@ export default function LandingPage() {
       
       <div className="snap-container" onScroll={handleScroll}>
         
-        {/* Scroll 1: Hero */}
+        {/* Scroll 1: Hero[cite: 9] */}
         <section id="about" className="snap-section cinematic-hero-centered">
           <div className="hero-content-center">
             <div className="hero-title-center">
@@ -93,7 +143,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Scroll 2: Pengalaman */}
+        {/* Scroll 2: Pengalaman[cite: 9] */}
         <section id="experience" className="snap-section">
           <div className="content-wrapper">
             <h3 className="section-title">Pengalaman</h3>
@@ -117,7 +167,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Scroll 3: Keahlian */}
+        {/* Scroll 3: Keahlian[cite: 9] */}
         <section id="skills" className="snap-section">
           <div className="content-wrapper">
             <h3 className="section-title">Teknologi & Keahlian</h3>
@@ -132,72 +182,62 @@ export default function LandingPage() {
           </div>
         </section>
 
-       {/* Scroll 4: Proyek Terpilih */}
+       {/* Scroll 4: Proyek Terpilih (Full Carousel Animation) */}
         <section id="projects" className="snap-section">
           <div className="content-wrapper">
             <h3 className="section-title">Proyek Terpilih</h3>
-            <div className="project-grid-2col">
-              
-              <div className="project-image-card">
-                <div className="img-container">
-                  <img src="/images/xos-portal.jpg" alt="XOS Portal" />
-                </div>
-                <div className="card-detail">
-                  <h4>Multi Frontend XOS Portal</h4>
-                  <span className="badge">Platform</span>
-                  <p>Antarmuka terpusat lintas platform untuk mengelola ekosistem dan operasional XOS.</p>
+
+            <div className="carousel-wrapper">
+              {/* Tombol Kiri */}
+              <button onClick={prevProject} className="carousel-btn prev" aria-label="Previous">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+
+              {/* Jendela Carousel */}
+              <div className="carousel-viewport">
+                <div 
+                  className="carousel-track"
+                  style={{ transform: `translateX(-${activeProject * 100}%)` }}
+                >
+                  {projectsData.map((proj, idx) => (
+                    <div key={idx} className="carousel-slide">
+                      <div className="carousel-card">
+                        <div className="card-text">
+                          <h4>{proj.title}</h4>
+                          <span className="badge">{proj.badge}</span>
+                          <p>{proj.desc}</p>
+                        </div>
+                        <div className="card-image">
+                          <img src={proj.img} alt={proj.title} />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              <div className="project-image-card">
-                <div className="img-container">
-                  <img src="/images/importer-data.jpg" alt="Importer Data" />
-                </div>
-                <div className="card-detail">
-                  <h4>Project Importer Data</h4>
-                  <span className="badge">Data Pipeline</span>
-                  <p>Modul utilitas untuk memvalidasi, memproses, dan mengimpor set data berskala besar ke dalam sistem.</p>
-                </div>
-              </div>
-
-              <div className="project-image-card">
-                <div className="img-container">
-                  <img src="/images/absence-company.jpg" alt="Absence Company" />
-                </div>
-                <div className="card-detail">
-                  <h4>Project Absence Company</h4>
-                  <span className="badge">Sistem Internal</span>
-                  <p>Platform manajemen kehadiran karyawan dengan fitur pelacakan waktu dan pelaporan data terpusat.</p>
-                </div>
-              </div>
-
-              <div className="project-image-card">
-                <div className="img-container">
-                  <img src="/images/code-playground.jpg" alt="Code Playground" />
-                </div>
-                <div className="card-detail">
-                  <h4>Project Code Playground</h4>
-                  <span className="badge">Alat Interaktif</span>
-                  <p>Lingkungan eksekusi kode berbasis web untuk pengujian dan eksperimen logika pemrograman secara langsung.</p>
-                </div>
-              </div>
-
-              <div className="project-image-card">
-                <div className="img-container">
-                  <img src="/images/json-to-form.jpg" alt="JSON to UI Form" />
-                </div>
-                <div className="card-detail">
-                  <h4>Library JSON to UI Form</h4>
-                  <span className="badge">Pustaka Komponen</span>
-                  <p>Pustaka dinamis yang secara otomatis mengonversi skema data JSON menjadi komponen formulir antarmuka.</p>
-                </div>
-              </div>
-
+              {/* Tombol Kanan */}
+              <button onClick={nextProject} className="carousel-btn next" aria-label="Next">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
             </div>
+
+            {/* Indikator Titik (Dots) */}
+            <div className="carousel-indicators">
+              {projectsData.map((_, idx) => (
+                <button 
+                  key={idx} 
+                  className={`dot ${activeProject === idx ? 'active' : ''}`}
+                  onClick={() => setActiveProject(idx)}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+
           </div>
         </section>
 
-        {/* Scroll 5: Footer / Kontak */}
+        {/* Scroll 5: Footer / Kontak[cite: 9] */}
         <section className="snap-section" style={{ minHeight: '60vh' }}>
           <div className="content-wrapper" style={{ width: '100%' }}>
             <Footer />
